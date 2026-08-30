@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pravila — UnderControl RP</title>
+<meta name="description" content="Pravila strežnika UnderControl RP, razdeljena po kategorijah. Preberi jih, preden vstopiš v mesto.">
+<meta name="theme-color" content="#04070C">
+<link rel="icon" href="assets/img/uc-logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body class="is-locked">
+
+<div class="preload">
+  <div class="preload-in">
+    <img src="assets/img/uc-logo.png" alt="">
+    <div class="preload-bar"><i></i></div>
+    <div class="preload-tx">Odpiram pravilnik</div>
+  </div>
+</div>
+
+<a class="skip-link" href="#main">Preskoči na vsebino</a>
+<div class="progress"></div>
+
+<div class="bg-stack" aria-hidden="true">
+  <div class="bg-img"></div>
+  <div class="bg-aurora"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-sweep"></div>
+  <div class="bg-vignette"></div>
+  <div class="bg-grain"></div>
+</div>
+
+<!-- SVG filter za pravi lom svetlobe na steklu (kjer ga brskalnik podpira) -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <filter id="uc-refract" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="7" result="n"/>
+    <feGaussianBlur in="n" stdDeviation="3" result="nb"/>
+    <feDisplacementMap in="SourceGraphic" in2="nb" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header class="header">
+  <nav class="nav" aria-label="Glavna navigacija">
+    <a class="brand" href="index.html">
+      <img src="assets/img/uc-logo.png" alt="UnderControl RP">
+      <span class="brand-tx"><b data-uc="server.name">UNDERCONTROL</b><span>Roleplay</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Domov</a>
+      <a href="pravila.html">Pravila</a>
+      <a href="trgovina.html">Trgovina</a>
+      <a href="whitelist.html">WhiteList</a>
+      <a href="ekipa.html">Ekipa</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-glass btn-sm magnetic" data-uc-href="discord" href="#">Discord</a>
+      <a class="btn btn-primary btn-sm magnetic" href="whitelist.html">Prijavi se</a>
+      <button class="burger" aria-label="Meni" aria-expanded="false"><i></i><i></i><i></i></button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-nav">
+  <a href="index.html">Domov</a>
+  <a href="pravila.html">Pravila</a>
+  <a href="trgovina.html">Trgovina</a>
+  <a href="whitelist.html">WhiteList</a>
+  <a href="ekipa.html">Ekipa</a>
+  <a class="btn btn-primary btn-lg" href="whitelist.html">Prijavi se na strežnik</a>
+</div>
+
+<main id="main">
+
+<!-- ========================================================== NASLOV STRANI -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb" data-reveal>
+      <a href="index.html">Domov</a> <span>/</span> Pravila
+    </div>
+    <span class="eyebrow" data-reveal>Pravilnik skupnosti</span>
+    <h1 class="h-xl" data-reveal data-delay="80">
+      Kaj je prav<br><span class="chrome">in kaj ni</span>
+    </h1>
+    <p class="lede" data-reveal data-delay="160">
+      Pravila niso tu zato, da omejujejo. Tu so zato, da ima zgodba vsakega igralca
+      enako težo. Nepoznavanje pravil ne odvezuje odgovornosti — z vstopom na strežnik
+      potrjuješ, da si jih prebral in razumeš.
+    </p>
+    <div class="row mt-2" data-reveal data-delay="220">
+      <span class="tag"><i class="dot"></i> Verzija 1.0</span>
+      <span class="tag is-neutral">Zadnja posodobitev: 30. avgust 2026</span>
+      <span class="tag is-neutral">9 kategorij</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ PRAVILA -->
+<section class="section is-tight">
+  <div class="wrap">
+    <div class="rules-layout">
+
+      <!-- ---------------------------------------------------- Stranski meni -->
+      <aside class="rules-side">
+        <div class="rules-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input type="search" id="rules-q" placeholder="Išči po pravilih…" aria-label="Iskanje po pravilih">
+        </div>
+
+        <nav class="rules-nav" aria-label="Kategorije pravil">
+          <a href="#splosno">Splošna pravila <b>SPL</b></a>
+          <a href="#roleplay">RolePlay <b>RP</b></a>
+          <a href="#prepovedano">Prepovedana dejanja <b>PRE</b></a>
+          <a href="#kriminal">Kriminal in nasilje <b>KRI</b></a>
+          <a href="#drzavne">Državne službe <b>DRZ</b></a>
+          <a href="#vozila">Vozila in vožnja <b>VOZ</b></a>
+          <a href="#komunikacija">Komunikacija <b>KOM</b></a>
+          <a href="#tehnika">Tehnična pravila <b>TEH</b></a>
+          <a href="#sankcije">Sankcije <b>SAN</b></a>
+        </nav>
+
+        <div class="rules-meta">
+          <b>Prijava kršitve</b>
+          Kršitve prijavi prek ticketa na Discordu. Priloži posnetek in čas dogodka —
+          brez dokaza obravnava ni mogoča.
+        </div>
+
+        <a class="btn btn-discord btn-block btn-sm" data-uc-href="discord" href="#">Odpri ticket</a>
+      </aside>
+
+      <!-- ------------------------------------------------------- Vsebina -->
+      <div class="rules-body" id="rules-body">
+
+        <!-- ========================================== SPLOŠNA PRAVILA -->
+        <section class="rule-cat" id="splosno" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.8-8 10-4.6-1.2-8-5-8-10V6l8-4z"/></svg>
+            </div>
+            <div>
+              <h2>Splošna pravila</h2>
+              <p>Veljajo povsod — v igri, na Discordu in v vsaki komunikaciji s skupnostjo.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SPL-01</span><h3>Spoštovanje je pogoj, ne izbira</h3></div>
+            <p>Žaljivke, poniževanje, nadlegovanje in vsakršno sovražno vedenje do drugih igralcev ali članov ekipe niso dovoljeni. To velja tudi, kadar je tvoj lik v igri agresiven — razlika med likom in osebo mora biti vedno jasna.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SPL-02</span><h3>Nič diskriminacije</h3></div>
+            <p>Rasizem, seksizem, homofobija, sovražni govor in vsebine, ki napadajo skupine ljudi, so takoj kaznovani s trajno prepovedjo. To ni predmet pogajanja in ne obstaja &bdquo;roleplay izgovor&ldquo;.</p>
+            <div class="rule-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+              <span>Kršitev tega pravila pomeni trajno prepoved brez opozorila in brez pravice do pritožbe.</span>
+            </div>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SPL-03</span><h3>Minimalna starost</h3></div>
+            <p>Za igranje na strežniku moraš biti star vsaj <b data-uc="whitelist.minAge">16</b> let. Ob dvomu lahko ekipa zahteva potrditev starosti prek glasovnega pogovora.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SPL-04</span><h3>En račun na osebo</h3></div>
+            <p>Vsak igralec ima en FiveM in en Discord račun. Uporaba dodatnih računov za izogibanje kazni pomeni trajno prepoved za vse povezane račune.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SPL-05</span><h3>Delujoč mikrofon</h3></div>
+            <p>Glasovna komunikacija je obvezna. Igralec brez razumljivega mikrofona ne more sodelovati v roleplayu in bo odstranjen s strežnika, dokler težave ne odpravi.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SPL-06</span><h3>Odločitev ekipe je zavezujoča</h3></div>
+            <p>Med igro se z administracijo ne prepiraš. Če se z odločitvijo ne strinjaš, jo izpodbijaš prek ticketa na Discordu — mirno, z dokazi in po dogodku, ne med njim.</p>
+          </article>
+        </section>
+
+        <!-- ================================================= ROLEPLAY -->
+        <section class="rule-cat" id="roleplay" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/></svg>
+            </div>
+            <div>
+              <h2>RolePlay pravila</h2>
+              <p>Srce strežnika. Vse ostalo obstaja zato, da ta del deluje.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">RP-01</span><h3>Vedno v liku</h3></div>
+            <p>Od trenutka, ko se povežeš, si svoj lik. Pogovori zunaj lika (OOC) v igri niso dovoljeni. Če moraš nekaj razjasniti, uporabi ticket ali počakaj do konca scene.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">RP-02</span><h3>Vrednost življenja (Fear RP)</h3></div>
+            <p>Tvoj lik ceni svoje življenje enako, kot bi ga ti. Če ti nekdo meri z orožjem, se ne obračaš, ne bežiš in ne izvlečeš pištole. Junaštvo brez pokritja je kršitev.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">RP-03</span><h3>Nova identiteta po smrti</h3></div>
+            <p>Ko tvoj lik trajno umre, se z novim likom ne vračaš k istim ljudem, konfliktom ali lokacijam. Spomini prejšnjega lika ne obstajajo.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">RP-04</span><h3>Poškodbe imajo posledice</h3></div>
+            <p>Po oživitvi tvoj lik ne ve, kdo ga je poškodoval, in vsaj 30 minut ne sme sodelovati v konfliktu, povezanem s tem dogodkom. Resne poškodbe je treba odigrati, ne pozabiti.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">RP-05</span><h3>Scene se dokonča</h3></div>
+            <p>Iz aktivne scene se ne izklopiš. Če moraš nujno oditi, to sporočiš prek ticketa — nenaden izklop med konfliktom se obravnava kot beg pred posledicami.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">RP-06</span><h3>Privolitev pri težkih temah</h3></div>
+            <p>Ugrabitve, mučenje in podobne intenzivne scene so dovoljene, a nikoli ne smejo prestopiti v resnično neprijetnost. Spolno nasilje, samopoškodovanje in zloraba otrok so v celoti prepovedani.</p>
+            <div class="rule-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+              <span>Če ti scena ni več prijetna, to povej — sogovornik jo mora nemudoma prekiniti.</span>
+            </div>
+          </article>
+        </section>
+
+        <!-- ========================================== PREPOVEDANA DEJANJA -->
+        <section class="rule-cat" id="prepovedano" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>
+            </div>
+            <div>
+              <h2>Prepovedana dejanja</h2>
+              <p>Klasične kršitve RolePlaya, ki najhitreje uničijo scene drugih igralcev.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">PRE-01</span><h3>Metagaming</h3></div>
+            <p>Uporaba informacij, ki jih tvoj lik ne bi mogel vedeti — iz Discorda, s streama, iz prejšnjega življenja ali od prijatelja — je prepovedana. Kar veš ti, še ne ve tvoj lik.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">PRE-02</span><h3>Powergaming</h3></div>
+            <p>Ne izvajaš dejanj, ki so fizično nemogoča, in sogovorniku ne odvzemaš možnosti odziva. Vsaka akcija mora dopuščati reakcijo.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">PRE-03</span><h3>RDM — nasilje brez razloga</h3></div>
+            <p>Napad na igralca brez predhodne interakcije in brez razloga v zgodbi ni dovoljen. Pred nasiljem mora obstajati razvit konflikt.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">PRE-04</span><h3>VDM — vozilo kot orožje</h3></div>
+            <p>Namerno povoženje igralcev brez roleplay razloga je prepovedano. Vozilo je orodje, ne strelno orožje.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">PRE-05</span><h3>Combat logging</h3></div>
+            <p>Izklop igre, ponovna povezava ali &bdquo;crash&ldquo; med konfliktom, aretacijo ali ugrabitvijo se obravnava kot beg pred posledicami — ne glede na razlog.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">PRE-06</span><h3>FailRP</h3></div>
+            <p>Vedenje, ki ruši verodostojnost sveta — plesanje sredi streljanja, skakanje s streh, govorjenje z osebo v nezavesti — ni sprejemljivo.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">PRE-07</span><h3>Izkoriščanje napak</h3></div>
+            <p>Napako v skripti prijavi, ne izkoristi. Kdor napako namerno uporablja za prednost, izgubi vse pridobljeno in prejme prepoved.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">PRE-08</span><h3>Safe zone kršitve</h3></div>
+            <p>V bolnišnici, na policijski postaji, v mehanični delavnici in na območju mestne hiše ni kriminalnih dejanj. Ta območja so zatočišče za vse.</p>
+          </article>
+        </section>
+
+        <!-- =========================================== KRIMINAL IN NASILJE -->
+        <section class="rule-cat" id="kriminal" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg>
+            </div>
+            <div>
+              <h2>Kriminal in nasilje</h2>
+              <p>Kriminal je dobrodošel, kadar ustvarja zgodbo — ne kadar jo uničuje.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KRI-01</span><h3>Omejitev velikosti skupine</h3></div>
+            <p>Pri ropu ali organiziranem kriminalnem dejanju lahko sodeluje največ 6 igralcev. Večje operacije je treba predhodno uskladiti z ekipo.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KRI-02</span><h3>Ugrabitev potrebuje razlog</h3></div>
+            <p>Ugrabitev mora imeti zahtevo, motiv in izhod. Ugrabitev zaradi ugrabitve same je FailRP. Talec mora vedno imeti možnost pogajanja.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KRI-03</span><h3>Rop civilista</h3></div>
+            <p>Med ropom lahko igralcu odvzameš največ 20 % njegove gotovine in nikoli osebnih dokumentov, telefona ali vozila. Rop mora biti odigran, ne izsiljen.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KRI-04</span><h3>Prepoved maščevanja</h3></div>
+            <p>Po zaključeni sceni se k istemu konfliktu ne vračaš vsaj 60 minut. Vračanje z novo opremo takoj po smrti je prepovedano.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KRI-05</span><h3>Sodelovanje frakcij</h3></div>
+            <p>Pri enem večjem kriminalnem dejanju lahko sodelujeta največ dve organizaciji. Povezovanje treh ali več frakcij proti eni strani ni dovoljeno.</p>
+          </article>
+        </section>
+
+        <!-- ============================================== DRŽAVNE SLUŽBE -->
+        <section class="rule-cat" id="drzavne" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.8-8 10-4.6-1.2-8-5-8-10V6l8-4z"/><path d="M12 8v8M8 12h8"/></svg>
+            </div>
+            <div>
+              <h2>Državne službe</h2>
+              <p>Policija, nujna medicinska pomoč in sodišče imajo dodatne obveznosti.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">DRZ-01</span><h3>Uniforma ni ščit</h3></div>
+            <p>Član državne službe ima enake roleplay obveznosti kot vsi ostali. Zloraba položaja, pooblastil ali dostopa do podatkov pomeni takojšnjo odstranitev iz službe.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">DRZ-02</span><h3>Postopek pred silo</h3></div>
+            <p>Uporaba orožja je zadnji ukrep. Pred njo mora slediti opozorilo, poskus pogajanja in nestopnjevana uporaba sile — razen ob neposredni smrtni nevarnosti.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">DRZ-03</span><h3>Nevtralnost zdravstva</h3></div>
+            <p>Nujna medicinska pomoč ne sodeluje v konfliktih in ne posreduje informacij policiji. Pacient je pacient — ne glede na to, kaj je storil.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">DRZ-04</span><h3>Evidenca je resnična</h3></div>
+            <p>Vsaka aretacija, kazen in poročilo morajo biti vpisani v sistem. Kazni, ki niso zabeležene, ne obstajajo in se lahko razveljavijo.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">DRZ-05</span><h3>Ločenost od zasebnega lika</h3></div>
+            <p>Član policije z drugim likom ne sme sodelovati v kriminalni organizaciji, ki jo isti igralec preiskuje v službi.</p>
+          </article>
+        </section>
+
+        <!-- ================================================ VOZILA IN VOŽNJA -->
+        <section class="rule-cat" id="vozila" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l2-5a2 2 0 0 1 2-1.4h10A2 2 0 0 1 19 8l2 5"/><path d="M3 13h18v5H3z"/><circle cx="7" cy="18" r="1.6"/><circle cx="17" cy="18" r="1.6"/></svg>
+            </div>
+            <div>
+              <h2>Vozila in vožnja</h2>
+              <p>Mesto ima promet. Vozi tako, kot bi vozil v resnici.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">VOZ-01</span><h3>Realistična vožnja</h3></div>
+            <p>Vožnja po pločnikih, skozi objekte in po nemogočem terenu ni dovoljena. Vozilo ima omejitve — spoštuj jih.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">VOZ-02</span><h3>Nesreča se odigra</h3></div>
+            <p>Po hujšem trčenju lik ne odpelje naprej, kot da se ni nič zgodilo. Poškodbe vozila in telesa je treba odigrati.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">VOZ-03</span><h3>Ustrezno vozilo za dejanje</h3></div>
+            <p>Za pobeg pred policijo ne uporabljaš vozil, do katerih tvoj lik realno ne bi imel dostopa. Športna vozila zahtevajo lastništvo in zgodbo.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">VOZ-04</span><h3>Kraja vozila</h3></div>
+            <p>Vozila drugih igralcev ne kradeš brez roleplay razloga. Ukradeno vozilo je treba v razumnem času prodati, skriti ali vrniti — ne obdržati kot svoje.</p>
+          </article>
+        </section>
+
+        <!-- ================================================== KOMUNIKACIJA -->
+        <section class="rule-cat" id="komunikacija" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <div>
+              <h2>Komunikacija in Discord</h2>
+              <p>Skupnost živi tudi zunaj igre. Enaka pravila veljajo tudi tam.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KOM-01</span><h3>Discord je del strežnika</h3></div>
+            <p>Kršitve na Discordu se obravnavajo enako kot kršitve v igri. Kazen na enem mestu velja na obeh.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KOM-02</span><h3>Brez oglaševanja</h3></div>
+            <p>Oglaševanje drugih strežnikov, prodaja računov ali vsebine v igri za pravi denar zunaj uradne trgovine pomeni takojšnjo prepoved.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KOM-03</span><h3>Zasebnost drugih</h3></div>
+            <p>Objava zasebnih podatkov, posnetkov ali sporočil drugih igralcev brez njihovega dovoljenja je prepovedana.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">KOM-04</span><h3>Ustvarjalci vsebine</h3></div>
+            <p>Snemanje in prenašanje v živo sta dobrodošla. Poskrbi, da so gledalci seznanjeni s pravili, in ne dovoli, da tvoja skupnost posega v scene drugih igralcev.</p>
+          </article>
+        </section>
+
+        <!-- ================================================ TEHNIČNA PRAVILA -->
+        <section class="rule-cat" id="tehnika" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5l-9.4 9.4a2.8 2.8 0 0 1-4-4z"/></svg>
+            </div>
+            <div>
+              <h2>Tehnična pravila</h2>
+              <p>Kaj smeš imeti nameščeno in kaj pomeni takojšnjo prepoved.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">TEH-01</span><h3>Prepoved goljufij</h3></div>
+            <p>Vsakršne modifikacije, ki dajejo prednost — menuji, injektorji, makri, skripte za samodejno igranje — pomenijo trajno prepoved brez pravice do pritožbe.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">TEH-02</span><h3>Dovoljene modifikacije</h3></div>
+            <p>Grafične predelave, ki ne spreminjajo igralne prednosti (ReShade brez zaznavanja skozi objekte, zvočne in vizualne izboljšave), so dovoljene.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">TEH-03</span><h3>Izkoriščanje zaostanka</h3></div>
+            <p>Namerno povzročanje zaostanka, preobremenjevanje strežnika ali izkoriščanje slabe povezave za prednost je kaznivo enako kot goljufanje.</p>
+          </article>
+        </section>
+
+        <!-- ======================================================= SANKCIJE -->
+        <section class="rule-cat" id="sankcije" data-reveal>
+          <div class="rule-cat-head">
+            <div class="rule-cat-ico">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 8h14M7 8l-3 6h6zM17 8l-3 6h6z"/></svg>
+            </div>
+            <div>
+              <h2>Sankcije in pritožbe</h2>
+              <p>Kako izgleda postopek, ko pravilo prekršiš — in kaj lahko storiš.</p>
+            </div>
+          </div>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SAN-01</span><h3>Stopnjevanje kazni</h3></div>
+            <p>Prva kršitev pomeni opozorilo, druga začasno prepoved (od 1 do 7 dni), tretja daljšo prepoved (do 30 dni), četrta pa trajno. Težje kršitve preskočijo stopnje.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SAN-02</span><h3>Takojšnja trajna prepoved</h3></div>
+            <p>Goljufanje, sovražni govor, resne grožnje, zloraba pravega denarja in izogibanje kazni z drugim računom pomenijo trajno prepoved brez stopnjevanja.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SAN-03</span><h3>Pravica do pritožbe</h3></div>
+            <p>Vsako kazen lahko izpodbijaš prek ticketa v 14 dneh. Pritožbo obravnava druga oseba, kot je kazen izrekla. Odločitev vodstva je dokončna.</p>
+          </article>
+
+          <article class="rule">
+            <div class="rule-top"><span class="rule-id">SAN-04</span><h3>Dokazno breme</h3></div>
+            <p>Za prijavo potrebuješ posnetek ali sliko z jasnim potekom dogodka in približnim časom. Prijave brez dokaza se ne obravnavajo.</p>
+          </article>
+        </section>
+
+        <div class="rules-empty hide" id="rules-empty">
+          Za to iskanje ni zadetkov. Poskusi z drugo besedo ali odpri ticket na Discordu.
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================================================================== CTA -->
+<section class="section is-tight">
+  <div class="wrap">
+    <div class="join-strip glass" data-reveal>
+      <img src="assets/img/uc-logo.png" alt="">
+      <div>
+        <h3>Pravila prebrana. Kaj zdaj?</h3>
+        <p>Oddaj WhiteList vlogo in začni svojo zgodbo v mestu.</p>
+      </div>
+      <a class="btn btn-primary magnetic" href="whitelist.html">Oddaj vlogo</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-art" aria-hidden="true"></div>
+  <div class="wrap footer-in">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/uc-logo-text.png" alt="UnderControl RP">
+        <p>Slovenski FiveM RolePlay strežnik. Zgrajen za igralce, ki jim je za zgodbo mar bolj kot za rezultat.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Strežnik</h4>
+        <ul>
+          <li><a href="index.html#vizija">Naša vizija</a></li>
+          <li><a href="index.html#pecati">Pečati</a></li>
+          <li><a href="index.html#svet">Kaj te čaka</a></li>
+          <li><a href="index.html#faq">Pogosta vprašanja</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Skupnost</h4>
+        <ul>
+          <li><a href="pravila.html">Pravila</a></li>
+          <li><a href="whitelist.html">WhiteList prijava</a></li>
+          <li><a href="ekipa.html">Naša ekipa</a></li>
+          <li><a href="trgovina.html">Trgovina</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h4 style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ice-400)">Povezava</h4>
+        <div class="footer-ip">
+          <span data-connect>connect.undercontrol.si</span>
+          <button data-copy="connect.undercontrol.si">Kopiraj</button>
+        </div>
+        <a class="btn btn-discord btn-block btn-sm" data-uc-href="discord" href="#">Pridruži se Discordu</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="mono">© <span data-uc="year">2026</span> UNDERCONTROL RP — VSE PRAVICE PRIDRŽANE</span>
+      <div class="footer-legal">
+        <a href="pravila.html">Pravila</a>
+        <a href="#">Zasebnost</a>
+        <a href="#">Pogoji uporabe</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      UnderControl RP je neodvisen projekt skupnosti in ni povezan z družbo Rockstar Games,
+      Take-Two Interactive ali platformo Cfx.re / FiveM.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/rules.js"></script>
+</body>
+</html>

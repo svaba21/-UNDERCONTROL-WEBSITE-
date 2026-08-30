@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Naša ekipa — UnderControl RP</title>
+<meta name="description" content="Kdo skrbi za red na UnderControl RP. Struktura ekipe, pristojnosti in postopek obravnave prijav.">
+<meta name="theme-color" content="#04070C">
+<link rel="icon" href="assets/img/uc-logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body class="is-locked">
+
+<div class="preload">
+  <div class="preload-in">
+    <img src="assets/img/uc-logo.png" alt="">
+    <div class="preload-bar"><i></i></div>
+    <div class="preload-tx">Zbiram ekipo</div>
+  </div>
+</div>
+
+<a class="skip-link" href="#main">Preskoči na vsebino</a>
+<div class="progress"></div>
+
+<div class="bg-stack" aria-hidden="true">
+  <div class="bg-img"></div>
+  <div class="bg-aurora"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-sweep"></div>
+  <div class="bg-vignette"></div>
+  <div class="bg-grain"></div>
+</div>
+
+<!-- SVG filter za pravi lom svetlobe na steklu (kjer ga brskalnik podpira) -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <filter id="uc-refract" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="7" result="n"/>
+    <feGaussianBlur in="n" stdDeviation="3" result="nb"/>
+    <feDisplacementMap in="SourceGraphic" in2="nb" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header class="header">
+  <nav class="nav" aria-label="Glavna navigacija">
+    <a class="brand" href="index.html">
+      <img src="assets/img/uc-logo.png" alt="UnderControl RP">
+      <span class="brand-tx"><b data-uc="server.name">UNDERCONTROL</b><span>Roleplay</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Domov</a>
+      <a href="pravila.html">Pravila</a>
+      <a href="trgovina.html">Trgovina</a>
+      <a href="whitelist.html">WhiteList</a>
+      <a href="ekipa.html">Ekipa</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-glass btn-sm magnetic" data-uc-href="discord" href="#">Discord</a>
+      <a class="btn btn-primary btn-sm magnetic" href="whitelist.html">Prijavi se</a>
+      <button class="burger" aria-label="Meni" aria-expanded="false"><i></i><i></i><i></i></button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-nav">
+  <a href="index.html">Domov</a>
+  <a href="pravila.html">Pravila</a>
+  <a href="trgovina.html">Trgovina</a>
+  <a href="whitelist.html">WhiteList</a>
+  <a href="ekipa.html">Ekipa</a>
+  <a class="btn btn-primary btn-lg" href="whitelist.html">Prijavi se na strežnik</a>
+</div>
+
+<main id="main">
+
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb" data-reveal><a href="index.html">Domov</a> <span>/</span> Ekipa</div>
+    <span class="eyebrow" data-reveal>Kdo skrbi za red</span>
+    <h1 class="h-xl" data-reveal data-delay="80">
+      Ljudje za<br><span class="chrome">mestom</span>
+    </h1>
+    <p class="lede" data-reveal data-delay="160">
+      Ekipa UnderControl RP ni skrita. Vsak član ima jasno določene pristojnosti,
+      vsaka odločitev je zabeležena in nihče ne odloča o zadevi, v katero je sam vpleten.
+      Spodaj je natančno razdelano, kdo kaj počne — in na koga se obrneš.
+    </p>
+    <div class="row mt-2" data-reveal data-delay="220">
+      <span class="tag is-neutral">6 oddelkov</span>
+      <span class="tag"><i class="dot"></i> Podpora 24/7</span>
+      <span class="tag is-neutral">Vsaka odločitev zabeležena</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== STRUKTURA/HIERARHIJA -->
+<section class="section is-tight" id="struktura">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Struktura</span>
+      <h2 class="h-lg">Kako je razdeljeno<br>naše delovanje</h2>
+      <p class="lede">
+        Vsak nivo ima svoje pristojnosti in svoje omejitve. Višji nivo lahko odločitev nižjega
+        pregleda, ne more pa je razveljaviti brez obrazložitve.
+      </p>
+    </div>
+
+    <div class="hier">
+      <article class="hier-row" data-reveal>
+        <span class="hier-lvl">01</span>
+        <div class="hier-tx">
+          <b>Vodstvo projekta</b>
+          <p>Postavlja smer strežnika, potrjuje sezonske načrte, odloča o pritožbah zadnje stopnje in nosi končno odgovornost. V vsakodnevno moderiranje ne posega.</p>
+        </div>
+        <span class="hier-count">Founder · Co-Founder</span>
+      </article>
+
+      <article class="hier-row" data-reveal>
+        <span class="hier-lvl">02</span>
+        <div class="hier-tx">
+          <b>Vodja administracije</b>
+          <p>Vodi celotno administrativno ekipo, skrbi za doslednost kazni, pregleduje sporne odločitve in usposablja nove člane.</p>
+        </div>
+        <span class="hier-count">Head Admin</span>
+      </article>
+
+      <article class="hier-row" data-reveal>
+        <span class="hier-lvl">03</span>
+        <div class="hier-tx">
+          <b>Administratorji</b>
+          <p>Obravnavajo zahtevnejše prijave, izrekajo daljše kazni, vodijo dogodke in imajo dostop do orodij strežnika. Odločajo samostojno, a vsako odločitev zabeležijo.</p>
+        </div>
+        <span class="hier-count">Administrator</span>
+      </article>
+
+      <article class="hier-row" data-reveal>
+        <span class="hier-lvl">04</span>
+        <div class="hier-tx">
+          <b>Moderatorji</b>
+          <p>Prva linija podpore. Odpirajo in obravnavajo tickete, rešujejo sprotne spore v igri in izrekajo opozorila ter krajše kazni.</p>
+        </div>
+        <span class="hier-count">Moderator · Trial Mod</span>
+      </article>
+
+      <article class="hier-row" data-reveal>
+        <span class="hier-lvl">05</span>
+        <div class="hier-tx">
+          <b>Razvojna ekipa</b>
+          <p>Piše in vzdržuje skripto, ureja mapping in skrbi za zmogljivost strežnika. Nima administrativnih pooblastil nad igralci.</p>
+        </div>
+        <span class="hier-count">Developer · Mapper</span>
+      </article>
+
+      <article class="hier-row" data-reveal>
+        <span class="hier-lvl">06</span>
+        <div class="hier-tx">
+          <b>Vodje državnih služb in frakcij</b>
+          <p>Vodijo svoje organizacije v igri, sprejemajo nove člane in odgovarjajo za njihovo raven roleplaya. Njihova pooblastila veljajo samo znotraj lastne organizacije.</p>
+        </div>
+        <span class="hier-count">Faction Lead</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== ODDELKI -->
+<!--
+  ══════════════════════════════════════════════════════════════════════════
+  OPOMBA ZA EKIPO: spodnja imena so ZGOLJ PRIMERI (razporeditev in videz).
+  Zamenjaj jih s pravimi člani. Črka v krogcu se ustvari samodejno iz
+  prve črke imena — samo zamenjaj besedilo znotraj <b> in <span class="role">.
+  ══════════════════════════════════════════════════════════════════════════
+-->
+<section class="section" id="oddelki">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Oddelki</span>
+      <h2 class="h-lg">Kdo je za kaj zadolžen</h2>
+    </div>
+
+    <div class="stack" style="gap:clamp(18px,2vw,28px)">
+
+      <!-- ------------------------------------------------------ Vodstvo -->
+      <section class="team-dept glass" data-reveal>
+        <div class="team-dept-head">
+          <div class="team-dept-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l4 3 5-6 5 6 4-3v10H3z"/></svg>
+          </div>
+          <div>
+            <h2>Vodstvo</h2>
+            <p>Smer projekta, sezonski načrti, končne odločitve. Dosegljivi prek vodje administracije.</p>
+          </div>
+        </div>
+        <div class="member-grid">
+          <article class="member" data-tilt="7">
+            <div class="member-av">A</div>
+            <b>Ime Priimek</b>
+            <span class="role">Founder</span>
+            <span class="bio">Ustanovitelj projekta. Skrbi za vizijo, partnerstva in dolgoročni razvoj.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">B</div>
+            <b>Ime Priimek</b>
+            <span class="role">Co-Founder</span>
+            <span class="bio">Vodi vsakodnevno delovanje in povezuje razvoj z administracijo.</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- ----------------------------------------------- Administracija -->
+      <section class="team-dept glass" data-reveal>
+        <div class="team-dept-head">
+          <div class="team-dept-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.8-8 10-4.6-1.2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div>
+            <h2>Administracija</h2>
+            <p>Obravnava prijav, izrekanje kazni, reševanje sporov in nadzor nad doslednostjo pravil.</p>
+          </div>
+        </div>
+        <div class="member-grid">
+          <article class="member" data-tilt="7">
+            <div class="member-av">C</div>
+            <b>Ime Priimek</b>
+            <span class="role">Head Admin</span>
+            <span class="bio">Vodi administrativno ekipo in pregleduje pritožbe druge stopnje.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">D</div>
+            <b>Ime Priimek</b>
+            <span class="role">Administrator</span>
+            <span class="bio">Zahtevnejše prijave, dogodki v živo, usposabljanje moderatorjev.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">E</div>
+            <b>Ime Priimek</b>
+            <span class="role">Administrator</span>
+            <span class="bio">Nadzor nad frakcijami in usklajevanje večjih scen.</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- --------------------------------------------------- Moderacija -->
+      <section class="team-dept glass" data-reveal>
+        <div class="team-dept-head">
+          <div class="team-dept-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div>
+            <h2>Moderacija</h2>
+            <p>Prva linija podpore. Če odpreš ticket, ti bo najverjetneje odgovoril nekdo od njih.</p>
+          </div>
+        </div>
+        <div class="member-grid">
+          <article class="member" data-tilt="7">
+            <div class="member-av">F</div>
+            <b>Ime Priimek</b>
+            <span class="role">Moderator</span>
+            <span class="bio">Sprotne prijave, spori v igri, pomoč novim igralcem.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">G</div>
+            <b>Ime Priimek</b>
+            <span class="role">Moderator</span>
+            <span class="bio">Nadzor Discorda in obravnava prijav zunaj igre.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">H</div>
+            <b>Ime Priimek</b>
+            <span class="role">Trial Moderator</span>
+            <span class="bio">V obdobju usposabljanja. Deluje pod nadzorom mentorja.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">I</div>
+            <b>Ime Priimek</b>
+            <span class="role">Trial Moderator</span>
+            <span class="bio">V obdobju usposabljanja. Deluje pod nadzorom mentorja.</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- ------------------------------------------------------- Razvoj -->
+      <section class="team-dept glass" data-reveal>
+        <div class="team-dept-head">
+          <div class="team-dept-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg>
+          </div>
+          <div>
+            <h2>Razvoj in mapping</h2>
+            <p>Skripta, sistemi, interierji in zmogljivost. Nimajo pooblastil nad igralci.</p>
+          </div>
+        </div>
+        <div class="member-grid">
+          <article class="member" data-tilt="7">
+            <div class="member-av">J</div>
+            <b>Ime Priimek</b>
+            <span class="role">Lead Developer</span>
+            <span class="bio">Arhitektura skripte, jedro sistemov, testno okolje.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">K</div>
+            <b>Ime Priimek</b>
+            <span class="role">Developer</span>
+            <span class="bio">Sistemi za poklice, ekonomijo in telefon.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">L</div>
+            <b>Ime Priimek</b>
+            <span class="role">Mapper</span>
+            <span class="bio">Interierji, lokacije po meri, vizualna podoba mesta.</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- ----------------------------------------------- Državne službe -->
+      <section class="team-dept glass" data-reveal>
+        <div class="team-dept-head">
+          <div class="team-dept-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.8-8 10-4.6-1.2-8-5-8-10V6l8-4z"/><path d="M12 8v8M8 12h8"/></svg>
+          </div>
+          <div>
+            <h2>Vodje državnih služb</h2>
+            <p>Policija, nujna medicinska pomoč in pravosodje. Vodijo svoje enote in sprejemajo nove člane.</p>
+          </div>
+        </div>
+        <div class="member-grid">
+          <article class="member" data-tilt="7">
+            <div class="member-av">M</div>
+            <b>Ime Priimek</b>
+            <span class="role">Chief of Police</span>
+            <span class="bio">Vodi policijski oddelek, potrjuje postopke in nadzira uporabo sile.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">N</div>
+            <b>Ime Priimek</b>
+            <span class="role">EMS Chief</span>
+            <span class="bio">Vodi nujno medicinsko pomoč in usposabljanje reševalcev.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">O</div>
+            <b>Ime Priimek</b>
+            <span class="role">DOJ Lead</span>
+            <span class="bio">Sodni postopki, obravnave in pravna doslednost v igri.</span>
+          </article>
+        </div>
+      </section>
+
+      <!-- ---------------------------------------------- Vsebina/skupnost -->
+      <section class="team-dept glass" data-reveal>
+        <div class="team-dept-head">
+          <div class="team-dept-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l5-3v10l-5-3z"/><rect x="3" y="6" width="12" height="12" rx="2"/></svg>
+          </div>
+          <div>
+            <h2>Skupnost in vsebina</h2>
+            <p>Objave, dogodki, sodelovanje z ustvarjalci in skrb za vzdušje v skupnosti.</p>
+          </div>
+        </div>
+        <div class="member-grid">
+          <article class="member" data-tilt="7">
+            <div class="member-av">P</div>
+            <b>Ime Priimek</b>
+            <span class="role">Community Manager</span>
+            <span class="bio">Ankete, predlogi skupnosti, komunikacija z igralci.</span>
+          </article>
+          <article class="member" data-tilt="7">
+            <div class="member-av">R</div>
+            <b>Ime Priimek</b>
+            <span class="role">Content Creator</span>
+            <span class="bio">Grafike, napovedniki in objave na družbenih omrežjih.</span>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================================================= KAKO OBRAVNAVAMO PRIJAVE -->
+<section class="section" id="postopek">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Postopek</span>
+      <h2 class="h-lg">Kako obravnavamo<br>prijave in pritožbe</h2>
+      <p class="lede">
+        Da ne bo nejasnosti — tako izgleda pot vsake prijave od trenutka, ko odpreš ticket.
+      </p>
+    </div>
+
+    <div class="pillars">
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Korak 01</div>
+        <div class="pillar-b">
+          <h3>Odpreš ticket</h3>
+          <p>Na Discordu opišeš dogodek in priložiš dokaz — posnetek ali sliko z jasnim potekom in približnim časom. Brez dokaza obravnava ni mogoča.</p>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Korak 02</div>
+        <div class="pillar-b">
+          <h3>Prevzame ga moderator</h3>
+          <p>Ticket prevzame prva prosta oseba iz moderacije. Če je v dogodek vpletena sama, ga preda naprej — nihče ne odloča o svoji zadevi.</p>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Korak 03</div>
+        <div class="pillar-b">
+          <h3>Zaslišimo obe strani</h3>
+          <p>Preden pade odločitev, dobi vsaka vpletena stran priložnost, da pove svojo različico. To velja tudi, kadar se zdi zadeva očitna.</p>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Korak 04</div>
+        <div class="pillar-b">
+          <h3>Odločitev in zapis</h3>
+          <p>Odločitev je obrazložena in vpisana v evidenco skupaj z dokazom. Nezabeležena kazen ne velja in se lahko razveljavi.</p>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Korak 05</div>
+        <div class="pillar-b">
+          <h3>Možnost pritožbe</h3>
+          <p>V 14 dneh lahko odločitev izpodbijaš. Pritožbo obravnava druga oseba, kot je kazen izrekla. O pritožbah zadnje stopnje odloča vodstvo.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ ZAPOSLOVANJE -->
+<section class="section is-tight">
+  <div class="wrap">
+    <div class="cta glass glass-deep" data-reveal="zoom">
+      <div class="cta-art" aria-hidden="true"></div>
+      <div class="cta-in">
+        <span class="eyebrow is-centered">Pridruži se ekipi</span>
+        <h2 class="h-lg">Iščemo ljudi, ki<br><span class="chrome">poslušajo, preden sodijo</span></h2>
+        <p class="lede">
+          Ekipo gradimo iz skupnosti. Če si aktiven igralec, znaš ostati miren v napeti situaciji
+          in ti je za pošteno okolje resnično mar, se prijavi. Izkušnje z moderiranjem so prednost,
+          ne pogoj — vse ostalo te naučimo.
+        </p>
+        <div class="row" style="justify-content:center;gap:10px">
+          <span class="tag is-neutral">Minimalno 18 let</span>
+          <span class="tag is-neutral">Vsaj 1 mesec na strežniku</span>
+          <span class="tag is-neutral">Brez aktivnih kazni</span>
+        </div>
+        <div class="btn-row is-centered">
+          <a class="btn btn-primary btn-lg magnetic" data-uc-href="discord" href="#">Prijava v ekipo</a>
+          <a class="btn btn-glass btn-lg magnetic" href="pravila.html">Preberi pravila</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-art" aria-hidden="true"></div>
+  <div class="wrap footer-in">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/uc-logo-text.png" alt="UnderControl RP">
+        <p>Slovenski FiveM RolePlay strežnik. Zgrajen za igralce, ki jim je za zgodbo mar bolj kot za rezultat.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Strežnik</h4>
+        <ul>
+          <li><a href="index.html#vizija">Naša vizija</a></li>
+          <li><a href="index.html#pecati">Pečati</a></li>
+          <li><a href="index.html#svet">Kaj te čaka</a></li>
+          <li><a href="index.html#faq">Pogosta vprašanja</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Skupnost</h4>
+        <ul>
+          <li><a href="pravila.html">Pravila</a></li>
+          <li><a href="whitelist.html">WhiteList prijava</a></li>
+          <li><a href="ekipa.html">Naša ekipa</a></li>
+          <li><a href="trgovina.html">Trgovina</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h4 style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ice-400)">Povezava</h4>
+        <div class="footer-ip">
+          <span data-connect>connect.undercontrol.si</span>
+          <button data-copy="connect.undercontrol.si">Kopiraj</button>
+        </div>
+        <a class="btn btn-discord btn-block btn-sm" data-uc-href="discord" href="#">Pridruži se Discordu</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="mono">© <span data-uc="year">2026</span> UNDERCONTROL RP — VSE PRAVICE PRIDRŽANE</span>
+      <div class="footer-legal">
+        <a href="pravila.html">Pravila</a>
+        <a href="#">Zasebnost</a>
+        <a href="#">Pogoji uporabe</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      UnderControl RP je neodvisen projekt skupnosti in ni povezan z družbo Rockstar Games,
+      Take-Two Interactive ali platformo Cfx.re / FiveM.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

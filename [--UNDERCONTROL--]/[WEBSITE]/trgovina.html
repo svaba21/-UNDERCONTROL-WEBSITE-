@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Trgovina — UnderControl RP</title>
+<meta name="description" content="Podpri UnderControl RP. Prijavi se z Discord računom, izberi paket in nakup dokončaj z našo ekipo na Discordu.">
+<meta name="theme-color" content="#04070C">
+<link rel="icon" href="assets/img/uc-logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body class="is-locked">
+
+<div class="preload">
+  <div class="preload-in">
+    <img src="assets/img/uc-logo.png" alt="">
+    <div class="preload-bar"><i></i></div>
+    <div class="preload-tx">Odpiram trgovino</div>
+  </div>
+</div>
+
+<a class="skip-link" href="#main">Preskoči na vsebino</a>
+<div class="progress"></div>
+
+<div class="bg-stack" aria-hidden="true">
+  <div class="bg-img"></div>
+  <div class="bg-aurora"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-sweep"></div>
+  <div class="bg-vignette"></div>
+  <div class="bg-grain"></div>
+</div>
+
+<!-- SVG filter za pravi lom svetlobe na steklu (kjer ga brskalnik podpira) -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <filter id="uc-refract" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="7" result="n"/>
+    <feGaussianBlur in="n" stdDeviation="3" result="nb"/>
+    <feDisplacementMap in="SourceGraphic" in2="nb" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header class="header">
+  <nav class="nav" aria-label="Glavna navigacija">
+    <a class="brand" href="index.html">
+      <img src="assets/img/uc-logo.png" alt="UnderControl RP">
+      <span class="brand-tx"><b data-uc="server.name">UNDERCONTROL</b><span>Roleplay</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Domov</a>
+      <a href="pravila.html">Pravila</a>
+      <a href="trgovina.html">Trgovina</a>
+      <a href="whitelist.html">WhiteList</a>
+      <a href="ekipa.html">Ekipa</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-glass btn-sm magnetic" data-uc-href="discord" href="#">Discord</a>
+      <a class="btn btn-primary btn-sm magnetic" href="whitelist.html">Prijavi se</a>
+      <button class="burger" aria-label="Meni" aria-expanded="false"><i></i><i></i><i></i></button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-nav">
+  <a href="index.html">Domov</a>
+  <a href="pravila.html">Pravila</a>
+  <a href="trgovina.html">Trgovina</a>
+  <a href="whitelist.html">WhiteList</a>
+  <a href="ekipa.html">Ekipa</a>
+  <a class="btn btn-primary btn-lg" href="whitelist.html">Prijavi se na strežnik</a>
+</div>
+
+<main id="main">
+
+<!-- ========================================================== NASLOV STRANI -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="breadcrumb" data-reveal><a href="index.html">Domov</a> <span>/</span> Trgovina</div>
+    <span class="eyebrow" data-reveal>Podpri strežnik</span>
+    <h1 class="h-xl" data-reveal data-delay="80">
+      Ugodnosti, ki<br><span class="chrome">ne kvarijo igre</span>
+    </h1>
+    <p class="lede" data-reveal data-delay="160">
+      V naši trgovini ni ničesar, kar bi ti dalo prednost pred drugimi igralci.
+      Ni denarja v igri, ni orožja, ni hitrejših vozil. Je pa vidnost v skupnosti,
+      prednost v čakalni vrsti in nekaj stvari, ki tvojemu liku dodajo osebnost.
+    </p>
+    <div class="row mt-2" data-reveal data-delay="220">
+      <span class="tag is-ok">Brez pay-to-win</span>
+      <span class="tag is-neutral">Plačilo poteka na Discordu</span>
+      <span class="tag is-neutral">Preklic kadarkoli</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ POSTOPEK -->
+<section class="section is-tight">
+  <div class="wrap">
+    <div class="grid g-3" data-reveal>
+      <div class="feat glass is-compact">
+        <div class="feat-ico">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.9 16.9 0 0 0 15.1 4l-.2.4a15.6 15.6 0 0 1 3.7 1.2 13.4 13.4 0 0 0-11.2 0 15.6 15.6 0 0 1 3.7-1.2L10.9 4a16.9 16.9 0 0 0-4.2 1.3C4 9.3 3.3 13.2 3.7 17a17 17 0 0 0 5.1 2.6l.4-.6a11 11 0 0 1-1.7-.8l.4-.3a12 12 0 0 0 10.2 0l.4.3a11 11 0 0 1-1.7.8l.4.6a17 17 0 0 0 5.1-2.6c.5-4.4-.7-8.3-3-11.7zM9.7 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm4.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+        </div>
+        <h3>1. Prijava</h3>
+        <p>Prijaviš se z Discord računom. Potrebujemo samo tvoje uporabniško ime in ID — nič drugega.</p>
+      </div>
+      <div class="feat glass is-compact">
+        <div class="feat-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h12"/></svg>
+        </div>
+        <h3>2. Izbira paketa</h3>
+        <p>Izbereš, kar te zanima. Vse cene so končne in v evrih, brez skritih stroškov.</p>
+      </div>
+      <div class="feat glass is-compact">
+        <div class="feat-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>
+        </div>
+        <h3>3. Zaključek na Discordu</h3>
+        <p>Nakup dokončaš v pogovoru z našo ekipo. <b>Plačila na spletni strani ne pobiramo.</b></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================================================== DISCORD PRIJAVA -->
+<section class="section is-tight">
+  <div class="wrap">
+    <div class="store-auth glass is-refractive" id="auth-box" data-reveal>
+      <!-- Stanje: odjavljen -->
+      <div id="auth-out">
+        <h3>Prijavi se z Discord računom</h3>
+        <p>
+          Prijava nam pove, komu naj ekipa dodeli ugodnosti. Ne dobimo tvojega gesla,
+          e-pošte ali seznama strežnikov — le uporabniško ime in ID.
+        </p>
+      </div>
+      <!-- Stanje: prijavljen -->
+      <div id="auth-in" class="hide">
+        <div class="store-user">
+          <div class="store-avatar" id="auth-avatar">?</div>
+          <div class="store-user-tx">
+            <b id="auth-name">Igralec</b>
+            <span id="auth-id">ID: —</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <button class="btn btn-discord magnetic" id="btn-login">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.9 16.9 0 0 0 15.1 4l-.2.4a15.6 15.6 0 0 1 3.7 1.2 13.4 13.4 0 0 0-11.2 0 15.6 15.6 0 0 1 3.7-1.2L10.9 4a16.9 16.9 0 0 0-4.2 1.3C4 9.3 3.3 13.2 3.7 17a17 17 0 0 0 5.1 2.6l.4-.6a11 11 0 0 1-1.7-.8l.4-.3a12 12 0 0 0 10.2 0l.4.3a11 11 0 0 1-1.7.8l.4.6a17 17 0 0 0 5.1-2.6c.5-4.4-.7-8.3-3-11.7zM9.7 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm4.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+          Prijava z Discordom
+        </button>
+        <button class="btn btn-ghost hide" id="btn-logout">Odjava</button>
+      </div>
+    </div>
+    <p class="disclaimer mt-1" id="auth-demo-note"></p>
+  </div>
+</section>
+
+<!-- ============================================================== PAKETI -->
+<section class="section" id="paketi">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Ponudba</span>
+      <h2 class="h-lg">Izberi, kar ti ustreza</h2>
+    </div>
+
+    <div class="store-tabs mt-0" role="tablist" data-reveal>
+      <button class="is-active" data-tab="narocnine" role="tab">Naročnine</button>
+      <button data-tab="enkratno" role="tab">Enkratni paketi</button>
+      <button data-tab="donacija" role="tab">Donacija</button>
+    </div>
+
+    <!-- ------------------------------------------------------ NAROČNINE -->
+    <div class="pack-grid mt-3" data-panel="narocnine">
+      <article class="pack glass" data-tilt="5" data-reveal="tilt"
+               data-pack="Led" data-price="5 € / mesec" data-kind="Naročnina">
+        <div class="pack-head">
+          <span class="tier">Raven 01</span>
+          <h3>Led</h3>
+        </div>
+        <div class="pack-price"><b>5</b><span>€ / mesec</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Označba <b>Led</b> na Discordu</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Barva imena v klepetu</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> +10 mest prednosti v vrsti</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Dostop do kanala podpornikov</li>
+        </ul>
+        <button class="btn btn-glass btn-block" data-buy>Izberi paket</button>
+      </article>
+
+      <article class="pack glass is-featured" data-tilt="5" data-reveal="tilt" data-delay="70"
+               data-pack="Kristal" data-price="9 € / mesec" data-kind="Naročnina">
+        <span class="pack-flag">Najbolj priljubljeno</span>
+        <div class="pack-head">
+          <span class="tier">Raven 02</span>
+          <h3>Kristal</h3>
+        </div>
+        <div class="pack-price"><b>9</b><span>€ / mesec</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Vse iz ravni <b>Led</b></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> +25 mest prednosti v vrsti</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Dodatno mesto za lik</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Registrska tablica po želji</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Prednost pri prijavi na dogodke</li>
+        </ul>
+        <button class="btn btn-primary btn-block" data-buy>Izberi paket</button>
+      </article>
+
+      <article class="pack glass" data-tilt="5" data-reveal="tilt" data-delay="140"
+               data-pack="Obsidian" data-price="15 € / mesec" data-kind="Naročnina">
+        <div class="pack-head">
+          <span class="tier">Raven 03</span>
+          <h3>Obsidian</h3>
+        </div>
+        <div class="pack-price"><b>15</b><span>€ / mesec</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Vse iz ravni <b>Kristal</b></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> +50 mest prednosti v vrsti</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Dve dodatni mesti za lik</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Osebna telefonska številka</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Glas pri mesečnih anketah razvoja</li>
+        </ul>
+        <button class="btn btn-glass btn-block" data-buy>Izberi paket</button>
+      </article>
+
+      <article class="pack glass" data-tilt="5" data-reveal="tilt" data-delay="210"
+               data-pack="Platina" data-price="25 € / mesec" data-kind="Naročnina">
+        <div class="pack-head">
+          <span class="tier">Raven 04</span>
+          <h3>Platina</h3>
+        </div>
+        <div class="pack-price"><b>25</b><span>€ / mesec</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Vse iz ravni <b>Obsidian</b></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> +100 mest prednosti v vrsti</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Ime na strani in v odjavni špici</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Zgodnji dostop do testnega okolja</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Neposreden kanal do razvojne ekipe</li>
+        </ul>
+        <button class="btn btn-glass btn-block" data-buy>Izberi paket</button>
+      </article>
+    </div>
+
+    <!-- --------------------------------------------------- ENKRATNI PAKETI -->
+    <div class="pack-grid mt-3 hide" data-panel="enkratno">
+      <article class="pack glass" data-tilt="5"
+               data-pack="Registrska tablica po želji" data-price="5 €" data-kind="Enkratni nakup">
+        <div class="pack-head"><span class="tier">Kozmetika</span><h3>Tablica po želji</h3></div>
+        <div class="pack-price"><b>5</b><span>€ enkratno</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Do 8 znakov po tvoji izbiri</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Velja za eno vozilo</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Vsebina mora ustrezati pravilom</li>
+        </ul>
+        <button class="btn btn-glass btn-block" data-buy>Izberi</button>
+      </article>
+
+      <article class="pack glass" data-tilt="5"
+               data-pack="Dodatno mesto za lik" data-price="7 €" data-kind="Enkratni nakup">
+        <div class="pack-head"><span class="tier">Račun</span><h3>Dodatno mesto za lik</h3></div>
+        <div class="pack-price"><b>7</b><span>€ enkratno</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Trajno mesto na tvojem računu</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Največ 5 likov skupaj</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Vsak lik ima svoje premoženje</li>
+        </ul>
+        <button class="btn btn-glass btn-block" data-buy>Izberi</button>
+      </article>
+
+      <article class="pack glass" data-tilt="5"
+               data-pack="Osebna telefonska številka" data-price="4 €" data-kind="Enkratni nakup">
+        <div class="pack-head"><span class="tier">Kozmetika</span><h3>Telefonska številka</h3></div>
+        <div class="pack-price"><b>4</b><span>€ enkratno</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Številka po tvoji izbiri</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Ostane tudi ob menjavi telefona</li>
+        </ul>
+        <button class="btn btn-glass btn-block" data-buy>Izberi</button>
+      </article>
+
+      <article class="pack glass" data-tilt="5"
+               data-pack="Paket oblačil po meri" data-price="12 €" data-kind="Enkratni nakup">
+        <div class="pack-head"><span class="tier">Kozmetika</span><h3>Oblačila po meri</h3></div>
+        <div class="pack-price"><b>12</b><span>€ enkratno</span></div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Kos oblačila po tvoji zamisli</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Izdela naša ekipa</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Rok izdelave do 14 dni</li>
+        </ul>
+        <button class="btn btn-glass btn-block" data-buy>Izberi</button>
+      </article>
+    </div>
+
+    <!-- ------------------------------------------------------- DONACIJA -->
+    <div class="pack-grid mt-3 hide" data-panel="donacija" style="grid-template-columns:minmax(0,560px)">
+      <article class="pack glass" data-pack="Prosta donacija" data-price="" data-kind="Donacija">
+        <div class="pack-head"><span class="tier">Hvala</span><h3>Prosta donacija</h3></div>
+        <p style="color:var(--tx-3);font-size:.94rem">
+          Če želiš podpreti strežnik brez ugodnosti, lahko doniraš poljuben znesek.
+          Vsak evro gre v strojno opremo, glasovni strežnik in razvoj.
+        </p>
+        <div class="field">
+          <label for="don-amount">Znesek v evrih</label>
+          <input class="input" type="number" id="don-amount" min="1" step="1" value="10" placeholder="10">
+          <span class="hint">Znesek je zgolj dogovor — plačilo urediš z ekipo na Discordu.</span>
+        </div>
+        <button class="btn btn-primary btn-block" data-buy>Nadaljuj</button>
+      </article>
+    </div>
+
+    <p class="disclaimer mt-3">
+      Vse cene so v evrih in vključujejo morebitne dajatve. Naročnino lahko kadarkoli prekličeš
+      prek ticketa na Discordu; ugodnosti veljajo do konca plačanega obdobja. Nakup ne prinaša
+      prednosti v igri in ne zagotavlja odobritve WhiteList vloge. Vračilo je mogoče v 14 dneh
+      od nakupa, če ugodnosti še niso bile dodeljene.
+    </p>
+  </div>
+</section>
+
+<!-- ================================================================= FAQ -->
+<section class="section is-tight">
+  <div class="wrap is-narrow">
+    <div class="sec-head is-centered" data-reveal>
+      <span class="eyebrow is-centered">Še vprašanje?</span>
+      <h2 class="h-lg">O nakupu in podpori</h2>
+    </div>
+    <div class="faq" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q">Zakaj plačila ne izvedem kar tukaj? <i></i></button>
+        <div class="faq-a"><div><p>
+          Ker želimo, da vsak nakup potrdi človek. Na strani izbereš paket, ekipa pa
+          na Discordu preveri tvoj račun, uskladi podrobnosti in dodeli ugodnosti.
+          Tako se nič ne izgubi in vedno veš, s kom si posloval.
+        </p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Kaj Discord prijava sploh vidi? <i></i></button>
+        <div class="faq-a"><div><p>
+          Samo tvoje uporabniško ime, ID računa in profilno sliko. Ne vidimo tvoje
+          e-pošte, gesla, sporočil ali drugih strežnikov, na katerih si.
+        </p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Ali s tem dobim prednost v igri? <i></i></button>
+        <div class="faq-a"><div><p>
+          Ne. Ugodnosti so kozmetične ali organizacijske narave — prednost v čakalni vrsti,
+          označba na Discordu, dodatno mesto za lik. Denarja v igri, orožja, vozil ali
+          hitrejšega napredka ne prodajamo.
+        </p></div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Sem mladoletna oseba, ali lahko kupim? <i></i></button>
+        <div class="faq-a"><div><p>
+          Če si mlajši od 18 let, potrebuješ dovoljenje staršev ali skrbnika. To povej
+          ekipi ob nakupu — brez potrditve nakupa ne bomo izvedli.
+        </p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================== MODAL -->
+<div class="modal" id="buy-modal" role="dialog" aria-modal="true" aria-labelledby="buy-title">
+  <div class="modal-card glass glass-deep">
+    <button class="modal-close" id="buy-close" aria-label="Zapri">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <h3 id="buy-title">Nadaljuj na Discordu</h3>
+    <p>
+      Nakupa ne dokončamo tukaj. Spodnje podatke kopiraj in jih pošlji v ticket na našem
+      Discordu — ekipa ti odgovori in uredi vse ostalo.
+    </p>
+    <div class="modal-sum" id="buy-summary"></div>
+    <div class="row" style="gap:10px">
+      <button class="btn btn-glass" id="buy-copy">Kopiraj podatke</button>
+      <a class="btn btn-discord" id="buy-discord" data-uc-href="discord" href="#" target="_blank" rel="noopener">Odpri Discord</a>
+    </div>
+    <p class="disclaimer" style="margin-top:0">
+      S klikom na &bdquo;Odpri Discord&ldquo; se ti odpre naš strežnik v novem zavihku.
+      Nobenih plačilnih podatkov ta stran ne zbira in ne shranjuje.
+    </p>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-art" aria-hidden="true"></div>
+  <div class="wrap footer-in">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/uc-logo-text.png" alt="UnderControl RP">
+        <p>Slovenski FiveM RolePlay strežnik. Zgrajen za igralce, ki jim je za zgodbo mar bolj kot za rezultat.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Strežnik</h4>
+        <ul>
+          <li><a href="index.html#vizija">Naša vizija</a></li>
+          <li><a href="index.html#pecati">Pečati</a></li>
+          <li><a href="index.html#svet">Kaj te čaka</a></li>
+          <li><a href="index.html#faq">Pogosta vprašanja</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Skupnost</h4>
+        <ul>
+          <li><a href="pravila.html">Pravila</a></li>
+          <li><a href="whitelist.html">WhiteList prijava</a></li>
+          <li><a href="ekipa.html">Naša ekipa</a></li>
+          <li><a href="trgovina.html">Trgovina</a></li>
+        </ul>
+      </div>
+      <div class="footer-connect">
+        <h4 style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ice-400)">Povezava</h4>
+        <div class="footer-ip">
+          <span data-connect>connect.undercontrol.si</span>
+          <button data-copy="connect.undercontrol.si">Kopiraj</button>
+        </div>
+        <a class="btn btn-discord btn-block btn-sm" data-uc-href="discord" href="#">Pridruži se Discordu</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span class="mono">© <span data-uc="year">2026</span> UNDERCONTROL RP — VSE PRAVICE PRIDRŽANE</span>
+      <div class="footer-legal">
+        <a href="pravila.html">Pravila</a>
+        <a href="#">Zasebnost</a>
+        <a href="#">Pogoji uporabe</a>
+      </div>
+    </div>
+    <p class="disclaimer">
+      UnderControl RP je neodvisen projekt skupnosti in ni povezan z družbo Rockstar Games,
+      Take-Two Interactive ali platformo Cfx.re / FiveM.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/store.js"></script>
+</body>
+</html>

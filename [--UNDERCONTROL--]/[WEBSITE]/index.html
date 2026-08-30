@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>UnderControl RP — Slovenski FiveM RolePlay</title>
+<meta name="description" content="UnderControl RP je slovenski FiveM RolePlay strežnik. Poglobljen roleplay, lastna skripta, resna skupnost in mesto, v katerem šteje vsaka odločitev.">
+<meta name="theme-color" content="#04070C">
+<link rel="icon" href="assets/img/uc-logo.png" type="image/png">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="UnderControl RP — Slovenski FiveM RolePlay">
+<meta property="og:description" content="Mesto je tvoje. Ostalo je pod nadzorom.">
+<meta property="og:image" content="assets/img/uc-footer.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/main.css">
+<link rel="stylesheet" href="assets/css/pages.css">
+</head>
+<body class="is-locked">
+
+<!-- ===================================================== NALAGANJE STRANI -->
+<div class="preload">
+  <div class="preload-in">
+    <img src="assets/img/uc-logo.png" alt="">
+    <div class="preload-bar"><i></i></div>
+    <div class="preload-tx">Vstopam v mesto</div>
+  </div>
+</div>
+
+<a class="skip-link" href="#main">Preskoči na vsebino</a>
+<div class="progress"></div>
+
+<!-- ============================================================== OZADJE -->
+<div class="bg-stack" aria-hidden="true">
+  <div class="bg-img"></div>
+  <div class="bg-aurora"></div>
+  <canvas id="bg-canvas"></canvas>
+  <div class="bg-grid"></div>
+  <div class="bg-sweep"></div>
+  <div class="bg-vignette"></div>
+  <div class="bg-grain"></div>
+</div>
+
+<!-- SVG filter za pravi lom svetlobe na steklu (kjer ga brskalnik podpira) -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <filter id="uc-refract" x="-20%" y="-20%" width="140%" height="140%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.008 0.014" numOctaves="2" seed="7" result="n"/>
+    <feGaussianBlur in="n" stdDeviation="3" result="nb"/>
+    <feDisplacementMap in="SourceGraphic" in2="nb" scale="12" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<!-- ============================================================== GLAVA -->
+<header class="header">
+  <nav class="nav" aria-label="Glavna navigacija">
+    <a class="brand" href="index.html">
+      <img src="assets/img/uc-logo.png" alt="UnderControl RP">
+      <span class="brand-tx">
+        <b data-uc="server.name">UNDERCONTROL</b>
+        <span>Roleplay</span>
+      </span>
+    </a>
+
+    <div class="nav-links">
+      <a href="index.html">Domov</a>
+      <a href="pravila.html">Pravila</a>
+      <a href="trgovina.html">Trgovina</a>
+      <a href="whitelist.html">WhiteList</a>
+      <a href="ekipa.html">Ekipa</a>
+    </div>
+
+    <div class="nav-cta">
+      <a class="btn btn-glass btn-sm magnetic" data-uc-href="discord" href="#">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.3 5.3A16.9 16.9 0 0 0 15.1 4l-.2.4a15.6 15.6 0 0 1 3.7 1.2 13.4 13.4 0 0 0-11.2 0 15.6 15.6 0 0 1 3.7-1.2L10.9 4a16.9 16.9 0 0 0-4.2 1.3C4 9.3 3.3 13.2 3.7 17a17 17 0 0 0 5.1 2.6l.4-.6a11 11 0 0 1-1.7-.8l.4-.3a12 12 0 0 0 10.2 0l.4.3a11 11 0 0 1-1.7.8l.4.6a17 17 0 0 0 5.1-2.6c.5-4.4-.7-8.3-3-11.7zM9.7 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm4.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+        Discord
+      </a>
+      <a class="btn btn-primary btn-sm magnetic" href="whitelist.html">Prijavi se</a>
+      <button class="burger" aria-label="Meni" aria-expanded="false"><i></i><i></i><i></i></button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-nav">
+  <a href="index.html">Domov</a>
+  <a href="pravila.html">Pravila</a>
+  <a href="trgovina.html">Trgovina</a>
+  <a href="whitelist.html">WhiteList</a>
+  <a href="ekipa.html">Ekipa</a>
+  <a class="btn btn-primary btn-lg" href="whitelist.html">Prijavi se na strežnik</a>
+</div>
+
+<main id="main">
+
+<!-- =============================================================== HERO -->
+<section class="hero">
+  <div class="hero-scene" aria-hidden="true">
+    <div class="hero-layer l-back" data-depth="0.25"></div>
+    <div class="hero-layer hero-beams" data-depth="0.55">
+      <i></i><i></i><i></i><i></i><i></i>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-in">
+      <div class="hero-emblem" data-reveal="zoom">
+        <img src="assets/img/uc-logo.png" alt="Logotip UnderControl RP">
+      </div>
+
+      <span class="eyebrow is-centered" data-reveal data-delay="80">Sezona 01 &nbsp;·&nbsp; Slovenski FiveM RP</span>
+
+      <h1 class="h-xxl hero-title" data-reveal data-delay="140" data-split>
+        <span class="ln">Mesto je tvoje.</span>
+        <span class="ln chrome">Ostalo je pod nadzorom.</span>
+      </h1>
+
+      <p class="hero-sub lede" data-reveal data-delay="240">
+        UnderControl RP ni še en strežnik po vrsti. Je slovenska RolePlay skupnost,
+        zgrajena od temeljev na novo — z lastno skripto, resnimi posledicami in mestom,
+        ki se spreminja glede na to, kaj v njem počneš. Tukaj se zgodbe ne piše po scenariju.
+        Tukaj jih pišeš ti.
+      </p>
+
+      <div class="btn-row is-centered" data-reveal data-delay="320">
+        <a class="btn btn-primary btn-lg magnetic" href="whitelist.html">
+          Oddaj WhiteList vlogo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn btn-glass btn-lg magnetic" href="pravila.html">Preberi pravila</a>
+        <a class="btn btn-ghost btn-lg magnetic" data-uc-href="discord" href="#">Pridruži se Discordu</a>
+      </div>
+
+      <div class="hero-status" data-reveal data-delay="400">
+        <span class="pill"><i class="dot"></i> Strežnik online</span>
+        <span>Povezava: <b data-connect>connect.undercontrol.si</b></span>
+        <button class="btn btn-ghost btn-sm" data-copy="connect.undercontrol.si">Kopiraj</button>
+      </div>
+
+      <div class="hero-facts" data-reveal data-delay="480">
+        <div class="hero-fact">
+          <b data-count="256" data-suffix="">0</b>
+          <span>Mest na strežniku</span>
+        </div>
+        <div class="hero-fact">
+          <b data-count="24" data-suffix="/7">0</b>
+          <span>Aktivna podpora</span>
+        </div>
+        <div class="hero-fact">
+          <b data-count="100" data-suffix="%">0</b>
+          <span>Lastna skripta</span>
+        </div>
+        <div class="hero-fact">
+          <b data-count="0">0</b>
+          <span>Pay-to-win prednosti</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" aria-hidden="true">
+    <i></i>
+    <span>Drsaj</span>
+  </div>
+</section>
+
+<!-- ============================================================ MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Poglobljen roleplay</span><span>Lastna skripta</span><span>Resne posledice</span>
+    <span>Živa ekonomija</span><span>Aktivna administracija</span><span>Slovenska skupnost</span>
+    <span>Brez pay-to-win</span><span>Custom mapping</span>
+    <span>Poglobljen roleplay</span><span>Lastna skripta</span><span>Resne posledice</span>
+    <span>Živa ekonomija</span><span>Aktivna administracija</span><span>Slovenska skupnost</span>
+    <span>Brez pay-to-win</span><span>Custom mapping</span>
+  </div>
+</div>
+
+<!-- ============================================================= VIZIJA -->
+<section class="section" id="vizija">
+  <div class="wrap is-narrow">
+    <p class="scroll-tx" data-reveal>
+      Mesto, kjer <em>odnosi</em> odločajo o vsem. Odpri lokal, oskrbuj drugega,
+      zgradi <em>imperij</em>. Policija z resnimi orodji lovi kriminal, ki načrtuje
+      vsako potezo. Živa ekonomija, dodelan telefon in <em>zgodbe</em>,
+      ki jih igralci ne pozabijo.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================== PEČATI / STANDARDI RP -->
+<section class="section" id="pecati">
+  <div class="wrap">
+    <div class="sec-head is-centered" data-reveal>
+      <span class="eyebrow is-centered">Naši pečati</span>
+      <h2 class="h-xl">Standardi, po katerih<br><span class="chrome">nas prepoznaš</span></h2>
+      <p class="lede">
+        Na RolePlay sceni obljublja vsak. Mi smo zapisali, kaj pri nas ni predmet pogajanja —
+        in po tem nas lahko sodiš od prvega dne.
+      </p>
+    </div>
+
+    <div class="feat-grid">
+      <article class="feat glass is-wide" data-tilt="6" data-reveal="tilt">
+        <div class="feat-glow"></div>
+        <span class="feat-num">01</span>
+        <div class="feat-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.4 8.8-8 10-4.6-1.2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Roleplay pred vsem ostalim</h3>
+        <p>
+          Vsaka mehanika obstaja zato, da podpira zgodbo — ne obratno. Nasilje brez razloga,
+          pobegi pred posledicami in igranje na rezultat pri nas nimajo prostora.
+          Karakter, ki ga ustvariš, živi z vsemi svojimi odločitvami.
+        </p>
+      </article>
+
+      <article class="feat glass is-half" data-tilt="6" data-reveal="tilt" data-delay="90">
+        <div class="feat-glow"></div>
+        <span class="feat-num">02</span>
+        <div class="feat-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>
+        </div>
+        <h3>Ekonomija, ki jo čutiš</h3>
+        <p>
+          Denar ima težo. Vsak posel, ki ga odpreš, potrebuje dobavitelja, stranko in tveganje.
+          Nič ne pade z neba.
+        </p>
+      </article>
+
+      <article class="feat glass is-third" data-tilt="6" data-reveal="tilt">
+        <div class="feat-glow"></div>
+        <span class="feat-num">03</span>
+        <div class="feat-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3>Podpora 24/7</h3>
+        <p>
+          Prijava na Discordu dobi odgovor, ne tišine. Administracija je ločena od igre —
+          nihče ne sodi v svoji zadevi.
+        </p>
+      </article>
+
+      <article class="feat glass is-third" data-tilt="6" data-reveal="tilt" data-delay="80">
+        <div class="feat-glow"></div>
+        <span class="feat-num">04</span>
+        <div class="feat-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>Brez pay-to-win</h3>
+        <p>
+          Podpora strežniku ti prinese vidnost in ugodnosti — nikoli prednosti,
+          ki bi pokvarila igro drugim.
+        </p>
+      </article>
+
+      <article class="feat glass is-third" data-tilt="6" data-reveal="tilt" data-delay="160">
+        <div class="feat-glow"></div>
+        <span class="feat-num">05</span>
+        <div class="feat-ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 17l9 4 9-4"/></svg>
+        </div>
+        <h3>Lastna koda</h3>
+        <p>
+          Ne kupujemo paketov na hitro. Sistemi so pisani za UnderControl in
+          se razvijajo skupaj s skupnostjo.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================= STATISTIKA -->
+<section class="section is-tight">
+  <div class="wrap">
+    <div class="stats" data-reveal>
+      <div class="stat">
+        <b data-count="1200" data-suffix="+">0</b>
+        <span>Članov skupnosti</span>
+      </div>
+      <div class="stat">
+        <b data-count="48" data-suffix=" k">0</b>
+        <span>Odigranih ur</span>
+      </div>
+      <div class="stat">
+        <b data-count="180" data-suffix="">0</b>
+        <span>Rekord hkratnih igralcev</span>
+      </div>
+      <div class="stat">
+        <b data-count="24" data-suffix="">0</b>
+        <span>Frakcij in podjetij</span>
+      </div>
+    </div>
+    <p class="disclaimer center mt-2">
+      Številke se osvežujejo ob koncu vsake sezone. Zadnja posodobitev: sezona 01.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================== SVET -->
+<section class="section" id="svet">
+  <div class="wrap">
+    <div class="split">
+      <div data-reveal="left">
+        <span class="eyebrow">Kaj te čaka</span>
+        <h2 class="h-lg mt-2">Mesto, ki živi<br>tudi ko te ni</h2>
+        <p class="lede mt-2">
+          Los Santos smo predelali tako, da vsaka soseska nekomu nekaj pomeni.
+          Podjetja imajo lastnike, ulice imajo zgodovino, policija ima evidenco.
+          Ko se naslednjič vrneš, mesto ni tam, kjer si ga pustil.
+        </p>
+
+        <ul class="check-list">
+          <li>
+            <span class="check-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>
+            <span><b>Frakcije z zgodovino.</b> Vsaka organizacija ima svoje ozemlje, pravila in sovražnike — vstop ni samodejen.</span>
+          </li>
+          <li>
+            <span class="check-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>
+            <span><b>Državne službe z orodji.</b> Policija, nujna medicinska pomoč in sodišče delujejo po postopkih, ne po občutku.</span>
+          </li>
+          <li>
+            <span class="check-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>
+            <span><b>Civilno življenje z globino.</b> Od mehanika do gostinca — poklic ni gumb, ampak vsakodnevno delo z ljudmi.</span>
+          </li>
+          <li>
+            <span class="check-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg></span>
+            <span><b>Lasten mapping.</b> Interierji in lokacije, ki jih na drugih strežnikih ne najdeš.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="vision-media" data-reveal="right" data-tilt="5">
+        <img src="assets/img/uc-police.png" alt="Znak policije UnderControl">
+        <div class="vision-badge">
+          <b>UnderControl Police Department</b>
+          <span>Ena od šestih državnih služb</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================= STEBRI -->
+<section class="section" id="stebri">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <span class="eyebrow">Naša vizija</span>
+      <h2 class="h-xl">Kam peljemo<br><span class="chrome">UnderControl</span></h2>
+      <p class="lede">
+        Nismo strežnik, ki se odpre in čaka. Vsaka sezona ima cilj, vsak cilj ima rok
+        in vsak rok javno objavimo — da nas skupnost lahko drži za besedo.
+      </p>
+    </div>
+
+    <div class="pillars">
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Steber 01</div>
+        <div class="pillar-b">
+          <h3>Zgodba pred vsebino</h3>
+          <p>
+            Novih sistemov ne dodajamo zato, ker jih imajo drugi. Dodamo jih, ko skupnost
+            pokaže, da bi z njimi nastale boljše zgodbe. Vsaka posodobitev ima zapisano,
+            kateri roleplay omogoča.
+          </p>
+          <div class="pillar-tags">
+            <span class="tag">Sezonske zgodbe</span>
+            <span class="tag">Dogodki v živo</span>
+            <span class="tag">Igralski predlogi</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Steber 02</div>
+        <div class="pillar-b">
+          <h3>Pošteno okolje</h3>
+          <p>
+            Enaka pravila za vse — za novinca, za lastnika frakcije in za člana ekipe.
+            Vsaka administrativna odločitev je zabeležena, vsak izrek kazni je obrazložen
+            in vsak igralec ima pravico do pritožbe.
+          </p>
+          <div class="pillar-tags">
+            <span class="tag">Javna pravila</span>
+            <span class="tag">Pravica do pritožbe</span>
+            <span class="tag">Ločeno sojenje</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Steber 03</div>
+        <div class="pillar-b">
+          <h3>Tehnična brezhibnost</h3>
+          <p>
+            Strežnik na namenski strojni opremi, redni restarti, nadzor zmogljivosti in
+            testno okolje pred vsako večjo posodobitvijo. Lag ni del roleplaya.
+          </p>
+          <div class="pillar-tags">
+            <span class="tag">Namenski strežnik</span>
+            <span class="tag">Testno okolje</span>
+            <span class="tag">Nadzor 24/7</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="pillar" data-reveal>
+        <div class="pillar-k">Steber 04</div>
+        <div class="pillar-b">
+          <h3>Skupnost, ki odloča</h3>
+          <p>
+            Mesečna vprašanja skupnosti, odprt kanal za predloge in javen razvojni načrt.
+            Kar dobi podporo igralcev, pride na vrsto — in to povemo naglas.
+          </p>
+          <div class="pillar-tags">
+            <span class="tag">Javni roadmap</span>
+            <span class="tag">Ankete</span>
+            <span class="tag">Odprt feedback</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================= TRGOVINA CTA -->
+<section class="section" id="podpora">
+  <div class="wrap">
+    <div class="split">
+      <div data-reveal="left">
+        <span class="eyebrow">Podpora strežniku</span>
+        <h2 class="h-lg mt-2">Ugodnosti, ki<br>ne kvarijo igre</h2>
+        <p class="lede mt-2">
+          Strežnik, glasovni strežnik in razvoj stanejo. Kdor želi pomagati, dobi vidnost
+          v skupnosti in prednost v vrsti — nikoli močnejšega orožja ali več denarja v igri.
+        </p>
+        <p class="lede mt-1">
+          Plačila <b>ne pobiramo na spletni strani</b>. Prijaviš se z Discord računom,
+          izbereš paket, nakup pa dokončaš neposredno pri naši ekipi na Discordu.
+        </p>
+        <div class="btn-row mt-3">
+          <a class="btn btn-primary magnetic" href="trgovina.html">Odpri trgovino</a>
+          <a class="btn btn-ghost magnetic" data-uc-href="discord" href="#">Vprašaj na Discordu</a>
+        </div>
+      </div>
+
+      <div class="grid" data-reveal="right">
+        <div class="pack glass" data-tilt="5">
+          <span class="pack-flag">Najbolj priljubljeno</span>
+          <div class="pack-head">
+            <span class="tier">Raven 02</span>
+            <h3>Ledeni podpornik</h3>
+          </div>
+          <div class="pack-price"><b>9</b><span>€ / mesec</span></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Prednost v čakalni vrsti</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Označba na Discordu in strani</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg> Dodatno mesto za lik</li>
+          </ul>
+          <a class="btn btn-glass btn-block" href="trgovina.html">Poglej pakete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== WL CTA -->
+<section class="section is-tight">
+  <div class="wrap">
+    <div class="join-strip glass" data-reveal>
+      <img src="assets/img/uc-logo.png" alt="">
+      <div>
+        <h3>Nov si na sceni? Nič hudega.</h3>
+        <p>
+          WhiteList vloga te vodi korak za korakom. Ne iščemo popolnih igralcev —
+          iščemo tiste, ki jim je za zgodbo mar. Odgovor prejmeš v
+          <b data-uc="whitelist.reviewTime">24 – 48 ur</b>.
+        </p>
+      </div>
+      <a class="btn btn-primary magnetic" href="whitelist.html">Začni prijavo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ FAQ -->
+<section class="section" id="faq">
+  <div class="wrap is-narrow">
+    <div class="sec-head is-centered" data-reveal>
+      <span class="eyebrow is-centered">Pogosta vprašanja</span>
+      <h2 class="h-xl">Preden vprašaš<br><span class="chrome">na Discordu</span></h2>
+    </div>
+
+    <div class="faq" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q">Kaj sploh je UnderControl RP? <i></i></button>
+        <div class="faq-a"><div><p>
+          UnderControl RP je slovenski FiveM RolePlay strežnik. Igraš lik v mestu Los Santos —
+          civilista, policista, mehanika, člana organizacije — in vse odločitve tega lika
+          imajo posledice. Poudarek je na resnem, poglobljenem roleplayu in ne na tekmovanju.
+        </p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Kako se pridružim strežniku? <i></i></button>
+        <div class="faq-a"><div><p>
+          Najprej se pridruži našemu Discordu in preberi pravila. Nato oddaj WhiteList vlogo
+          na tej strani. Vlogo pregleda ekipa in odgovor prejmeš običajno v 24 do 48 urah.
+          Ko je vloga odobrena, se s FiveM povežeš na naš strežnik.
+        </p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Ali potrebujem izkušnje z RolePlayom? <i></i></button>
+        <div class="faq-a"><div><p>
+          Ne. Izkušnje pomagajo, niso pa pogoj. V vlogi nas zanima predvsem to, ali razumeš
+          osnovna pravila in ali si pripravljen igrati svojega lika dosledno. Novim igralcem
+          na Discordu pomagamo z vodiči in mentorstvom prvih dni.
+        </p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Koliko sem star, da lahko igram? <i></i></button>
+        <div class="faq-a"><div><p>
+          Najnižja starost za WhiteList je 16 let. Izjeme so mogoče, če igralec v vlogi
+          pokaže izrazito zrelost, a o tem odloča ekipa za vsak primer posebej.
+        </p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Je strežnik pay-to-win? <i></i></button>
+        <div class="faq-a"><div><p>
+          Ne. V trgovini ni ničesar, kar bi ti dalo prednost v igri pred drugimi igralci.
+          Kupiti je mogoče vidnost v skupnosti, prednost v čakalni vrsti in kozmetične
+          ugodnosti. Denar v igri, orožje ali vozila s prednostjo se ne prodajajo.
+        </p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Zakaj nakupa ni mogoče dokončati na spletni strani? <i></i></button>
+        <div class="faq-a"><div><p>
+          Ker želimo, da vsak nakup potrdi človek iz naše ekipe. Na strani se prijaviš z
+          Discord računom in izbereš paket, dogovor in plačilo pa nato dokončaš neposredno
+          na Discordu. Tako imamo pregled nad vsako transakcijo in nič se ne izgubi.
+        </p></div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q">Kako prijavim igralca ali se pritožim na kazen? <i></i></button>
+        <div class="faq-a"><div><p>
+          Na Discordu odpri ticket v kanalu za prijave. Priloži posnetek ali sliko in čim
+          natančnejši opis dogodka. Pritožbe na kazen obravnava druga oseba, kot je kazen
+          izrekla — nihče ne odloča o svoji zadevi.
+        </p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================ CTA -->
+<section class="section">
+  <div class="wrap">
+    <div class="cta glass glass-deep" data-reveal="zoom">
+      <div class="cta-art" aria-hidden="true"></div>
+      <div class="cta-in">
+        <span class="eyebrow is-centered">Sezona 01 se je začela</span>
+        <h2 class="h-xl">Imaš zgodbo?<br><span class="chrome">Napišimo jo skupaj.</span></h2>
+        <p class="lede">
+          Mesto je odprto. Vloga traja deset minut, odgovor prejmeš v enem dnevu,
+          zgodba pa se lahko vleče leta.
+        </p>
+        <div class="btn-row is-centered">
+          <a class="btn btn-primary btn-lg magnetic" href="whitelist.html">Oddaj vlogo</a>
+          <a class="btn btn-glass btn-lg magnetic" href="pravila.html">Preberi pravila</a>
+        </div>
+        <p class="mono muted" style="font-size:.68rem;letter-spacing:.18em;text-transform:uppercase">
+          Pravila zadnjič posodobljena: 30. avgust 2026
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =============================================================== NOGA -->
+<footer class="footer">
+  <div class="footer-art" aria-hidden="true"></div>
+  <div class="wrap footer-in">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/img/uc-logo-text.png" alt="UnderControl RP">
+        <p>
+          Slovenski FiveM RolePlay strežnik. Zgrajen za igralce, ki jim je za zgodbo
+          mar bolj kot za rezultat.
+        </p>
+        <div class="socials">
+          <a data-uc-href="discord" href="#" aria-label="Discord">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.3 5.3A16.9 16.9 0 0 0 15.1 4l-.2.4a15.6 15.6 0 0 1 3.7 1.2 13.4 13.4 0 0 0-11.2 0 15.6 15.6 0 0 1 3.7-1.2L10.9 4a16.9 16.9 0 0 0-4.2 1.3C4 9.3 3.3 13.2 3.7 17a17 17 0 0 0 5.1 2.6l.4-.6a11 11 0 0 1-1.7-.8l.4-.3a12 12 0 0 0 10.2 0l.4.3a11 11 0 0 1-1.7.8l.4.6a17 17 0 0 0 5.1-2.6c.5-4.4-.7-8.3-3-11.7zM9.7 14.7c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2zm4.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2z"/></svg>
+          </a>
+          <a data-uc-href="tiktok" href="#" aria-label="TikTok">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.2 1.8 3.7 4 4v3c-1.5.1-2.9-.3-4.2-1.1v6.4c0 3.4-2.6 5.9-5.9 5.7-3-.2-5.2-2.7-5.2-5.7 0-3.3 2.9-5.9 6.2-5.6v3.1c-1.6-.4-3.1.7-3.1 2.4 0 1.4 1.1 2.5 2.5 2.5s2.5-1.1 2.5-2.5V3h3.2z"/></svg>
+          </a>
+          <a data-uc-href="youtube" href="#" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.7-1.8C18.3 5 12 5 12 5s-6.3 0-7.9.5a2.5 2.5 0 0 0-1.7 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7c.2.9.9 1.6 1.7 1.8C5.7 19 12 19 12 19s6.3 0 7.9-.5a2.5 2.5 0 0 0 1.7-1.8C22 15.2 22 12 22 12zM10 15V9l5.2 3L10 15z"/></svg>
+          </a>
+          <a data-uc-href="instagram" href="#" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Strežnik</h4>
+        <ul>
+          <li><a href="index.html#vizija">Naša vizija</a></li>
+          <li><a href="index.html#pecati">Pečati</a></li>
+          <li><a href="index.html#svet">Kaj te čaka</a></li>
+          <li><a href="index.html#faq">Pogosta vprašanja</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Skupnost</h4>
+        <ul>
+          <li><a href="pravila.html">Pravila</a></li>
+          <li><a href="whitelist.html">WhiteList prijava</a></li>
+          <li><a href="ekipa.html">Naša ekipa</a></li>
+          <li><a href="trgovina.html">Trgovina</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-connect">
+        <h4 style="font-family:var(--f-mono);font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ice-400)">Povezava</h4>
+        <div class="footer-ip">
+          <span data-connect>connect.undercontrol.si</span>
+          <button data-copy="connect.undercontrol.si">Kopiraj</button>
+        </div>
+        <a class="btn btn-discord btn-block btn-sm" data-uc-href="discord" href="#">Pridruži se Discordu</a>
+      </div>
+    </div>
+
+    <div class="footer-bot">
+      <span class="mono">© <span data-uc="year">2026</span> UNDERCONTROL RP — VSE PRAVICE PRIDRŽANE</span>
+      <div class="footer-legal">
+        <a href="pravila.html">Pravila</a>
+        <a href="#">Zasebnost</a>
+        <a href="#">Pogoji uporabe</a>
+      </div>
+    </div>
+
+    <p class="disclaimer">
+      UnderControl RP je neodvisen projekt skupnosti in ni povezan z družbo Rockstar Games,
+      Take-Two Interactive ali platformo Cxf.re / FiveM. Grand Theft Auto V je zaščitena
+      blagovna znamka družbe Rockstar Games. Za igranje je potreben zakonito pridobljen izvod igre.
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
